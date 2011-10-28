@@ -1,39 +1,57 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+
+<!-- Try double clicking. -->
+
+
 <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
 <style>
-body {
-	font-family: Helvetica, sans-serif;
-	background: #222;
-}
-.box { border-radius: 20px; padding-top: 40px; display:inline-block; width: 110px; height: 60px; margin: 30px; color: #fff; background-color: #444; border: 0px solid #222;
+a { text-decoration: none; color: #f00; }
+body { font-family: Helvetica, sans-serif; background: #222; color: #fff; }
+h1, p { margin: 20px; text-shadow: 1px 1px 1px #000; }
+.box { 
+border-radius: 20px; 
+padding-top: 40px; 
+margin: 20px;
+display:inline-block; 
+width: 110px; 
+height: 60px; 
+color: #fff; 
+background-color: #444; 
 text-align: center;
-vertical-align: middle;
+border-top: 1px solid #111;
+border-bottom: 1px solid #666;
 }
-a { text-decoration: none; }
 </style>
 </head>
 <body>
+
+<h1>Click to see how latencty feels.</h1>
 <div id="demo"></div>
+<p>Originally <a href="http://benzilla.galbraiths.org/">Ben Galbraith</a>'s idea. But his version is down.</p>
 
 <script>
 var j, delay = [0, 10, 25, 50, 100, 200, 300, 400, 500, 750];
 var timeouts = {};
 for (j in delay) {
-	var i = delay[j];
-	$('#demo').append('<a href="#" class="box" id=' + i + '>'+i+' ms</a>');
-	(function(i) {
-	$('#'+i).toggle(function() {
-	  clearTimeout(timeouts[i]);
-		timeouts[i] = setTimeout(function() { $('#'+i).css('background-color','#fff')}, i);
-	},function() {
-	  clearTimeout(timeouts[i]);
-		timeouts[i] = setTimeout(function() { $('#'+i).css('background-color', 'red')}, i);
-	});
-	})(i)
+  var i = delay[j];
+  $('#demo').append('<a href="#" class="box" id=' + i + '>'+i+' ms</a>');
+  (function(i) {
+  $('#'+i).toggle(function() {
+    clearTimeout(timeouts[i]);
+    timeouts[i] = setTimeout(function() { $('#'+i).css('background-color','#fff')}, i);
+  },function() {
+    clearTimeout(timeouts[i]);
+    timeouts[i] = setTimeout(function() { $('#'+i).css('background-color', 'red')}, i);
+  });
+  })(i)
 }
 </script>
+
+<a href="http://github.com/ryanwitt/latency-demo/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub"></a>
+
 </body>
 </html>
 
