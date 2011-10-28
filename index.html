@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+<style>
+body {
+	font-family: Helvetica, sans-serif;
+	background: #222;
+}
+.box { border-radius: 20px; padding-top: 40px; display:inline-block; width: 110px; height: 60px; margin: 30px; color: #fff; background-color: #444; border: 0px solid #222;
+text-align: center;
+vertical-align: middle;
+}
+a { text-decoration: none; }
+</style>
+</head>
+<body>
+<div id="demo"></div>
+
+<script>
+var j, delay = [0, 10, 25, 50, 100, 200, 300, 400, 500, 750];
+var timeouts = {};
+for (j in delay) {
+	var i = delay[j];
+	$('#demo').append('<a href="#" class="box" id=' + i + '>'+i+' ms</a>');
+	(function(i) {
+	$('#'+i).toggle(function() {
+	  clearTimeout(timeouts[i]);
+		timeouts[i] = setTimeout(function() { $('#'+i).css('background-color','#fff')}, i);
+	},function() {
+	  clearTimeout(timeouts[i]);
+		timeouts[i] = setTimeout(function() { $('#'+i).css('background-color', 'red')}, i);
+	});
+	})(i)
+}
+</script>
+</body>
+</html>
+
